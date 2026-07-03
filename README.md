@@ -2,7 +2,7 @@
 
 Interface web do projeto **Organizador de Estudos**.
 
-Ela permite cadastrar, consultar, filtrar, editar, concluir e excluir atividades acadêmicas usando a API Flask.
+Ela permite cadastrar, consultar, filtrar, editar, concluir e excluir atividades acadêmicas consumindo a API desenvolvida em Flask.
 
 ## Como executar
 
