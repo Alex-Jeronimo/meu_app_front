@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Organizador de Estudos</title>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <p class="eyebrow">Painel acadêmico</p>
+            <h1>Organizador de Estudos</h1>
+            <div class="summary" aria-label="Resumo das atividades">
+                <div class="summary-item">
+                    <strong id="totalCount">0</strong>
+                    <span>Total</span>
+                </div>
+                <div class="summary-item">
+                    <strong id="pendingCount">0</strong>
+                    <span>Pendentes</span>
+                </div>
+                <div class="summary-item">
+                    <strong id="progressCount">0</strong>
+                    <span>Em andamento</span>
+                </div>
+                <div class="summary-item">
+                    <strong id="doneCount">0</strong>
+                    <span>Concluídas</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="form-section" aria-labelledby="formTitle">
+            <div class="section-heading">
+                <h2 id="formTitle">Nova atividade</h2>
+                <button class="ghost-button hidden" type="button" id="cancelEditButton">Cancelar edição</button>
+            </div>
+
+            <form id="activityForm" class="activity-form">
+                <input type="hidden" id="activityId">
+
+                <div class="field">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Prova de Banco de Dados" required>
+                </div>
+
+                <div class="field">
+                    <label for="disciplina">Disciplina</label>
+                    <input type="text" id="disciplina" name="disciplina" placeholder="Banco de Dados" required>
+                </div>
+
+                <div class="field">
+                    <label for="dataEntrega">Data de entrega</label>
+                    <input type="date" id="dataEntrega" name="data_entrega" required>
+                </div>
+
+                <div class="field">
+                    <label for="prioridade">Prioridade</label>
+                    <select id="prioridade" name="prioridade" required>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média" selected>Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="Pendente" selected>Pendente</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Concluída">Concluída</option>
+                    </select>
+                </div>
+
+                <div class="field field-wide">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" rows="4" placeholder="Conteúdos, materiais ou observações"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-button" id="submitButton">Cadastrar atividade</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="filters-section" aria-label="Busca e filtros">
+            <form id="searchForm" class="search-form">
+                <div class="field">
+                    <label for="searchId">Buscar por ID</label>
+                    <div class="inline-control">
+                        <input type="number" id="searchId" min="1" placeholder="1">
+                        <button type="submit" class="secondary-button">Buscar</button>
+                        <button type="button" class="ghost-button" id="clearSearchButton">Limpar</button>
+                    </div>
+                </div>
+            </form>
+
+            <form id="filterForm" class="filter-form">
+                <div class="field">
+                    <label for="filterDisciplina">Disciplina</label>
+                    <input type="text" id="filterDisciplina" placeholder="Todas">
+                </div>
+
+                <div class="field">
+                    <label for="filterPrioridade">Prioridade</label>
+                    <select id="filterPrioridade">
+                        <option value="">Todas</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Média">Média</option>
+                        <option value="Baixa">Baixa</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="filterStatus">Status</label>
+                    <select id="filterStatus">
+                        <option value="">Todos</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Concluída">Concluída</option>
+                    </select>
+                </div>
+
+                <label class="toggle-field" for="filterUrgent">
+                    <input type="checkbox" id="filterUrgent">
+                    <span>Urgentes</span>
+                </label>
+
+                <button type="submit" class="secondary-button">Filtrar</button>
+            </form>
+        </section>
+
+        <section class="board-section" aria-labelledby="boardTitle">
+            <div class="section-heading">
+                <h2 id="boardTitle">Atividades</h2>
+                <span id="resultInfo" class="result-info">Carregando...</span>
+            </div>
+
+            <div id="cardsContainer" class="discipline-list"></div>
+            <p id="emptyState" class="empty-state hidden">Nenhuma atividade encontrada.</p>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
